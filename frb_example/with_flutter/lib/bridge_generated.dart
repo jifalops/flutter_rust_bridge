@@ -23,19 +23,26 @@ abstract class FlutterRustBridgeExample {
 
   Future<BoxedPoint> returningStructsWithBoxedFields({dynamic hint});
 
-  Future<int> offTopicMemoryTestInputArray({required Uint8List input, dynamic hint});
+  Future<int> offTopicMemoryTestInputArray(
+      {required Uint8List input, dynamic hint});
 
-  Future<Uint8List> offTopicMemoryTestOutputZeroCopyBuffer({required int len, dynamic hint});
+  Future<Uint8List> offTopicMemoryTestOutputZeroCopyBuffer(
+      {required int len, dynamic hint});
 
-  Future<Uint8List> offTopicMemoryTestOutputVecU8({required int len, dynamic hint});
+  Future<Uint8List> offTopicMemoryTestOutputVecU8(
+      {required int len, dynamic hint});
 
-  Future<int> offTopicMemoryTestInputVecOfObject({required List<Size> input, dynamic hint});
+  Future<int> offTopicMemoryTestInputVecOfObject(
+      {required List<Size> input, dynamic hint});
 
-  Future<List<Size>> offTopicMemoryTestOutputVecOfObject({required int len, dynamic hint});
+  Future<List<Size>> offTopicMemoryTestOutputVecOfObject(
+      {required int len, dynamic hint});
 
-  Future<int> offTopicMemoryTestInputComplexStruct({required TreeNode input, dynamic hint});
+  Future<int> offTopicMemoryTestInputComplexStruct(
+      {required TreeNode input, dynamic hint});
 
-  Future<TreeNode> offTopicMemoryTestOutputComplexStruct({required int len, dynamic hint});
+  Future<TreeNode> offTopicMemoryTestOutputComplexStruct(
+      {required int len, dynamic hint});
 
   Future<int> offTopicDeliberatelyReturnError({dynamic hint});
 
@@ -80,12 +87,14 @@ class TreeNode {
   });
 }
 
-class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBridgeExampleWire>
+class FlutterRustBridgeExampleImpl
+    extends FlutterRustBridgeBase<FlutterRustBridgeExampleWire>
     implements FlutterRustBridgeExample {
   factory FlutterRustBridgeExampleImpl(ffi.DynamicLibrary dylib) =>
       FlutterRustBridgeExampleImpl.raw(FlutterRustBridgeExampleWire(dylib));
 
-  FlutterRustBridgeExampleImpl.raw(FlutterRustBridgeExampleWire inner) : super(inner);
+  FlutterRustBridgeExampleImpl.raw(FlutterRustBridgeExampleWire inner)
+      : super(inner);
 
   Future<Uint8List> drawMandelbrot(
           {required Size imageSize,
@@ -94,8 +103,12 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
           required int numThreads,
           dynamic hint}) =>
       executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) => inner.wire_draw_mandelbrot(port_, _api2wire_box_autoadd_size(imageSize),
-            _api2wire_box_autoadd_point(zoomPoint), _api2wire_f64(scale), _api2wire_i32(numThreads)),
+        callFfi: (port_) => inner.wire_draw_mandelbrot(
+            port_,
+            _api2wire_box_autoadd_size(imageSize),
+            _api2wire_box_autoadd_point(zoomPoint),
+            _api2wire_f64(scale),
+            _api2wire_i32(numThreads)),
         parseSuccessData: _wire2api_ZeroCopyBuffer_Uint8List,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "draw_mandelbrot",
@@ -105,8 +118,11 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<String> passingComplexStructs({required TreeNode root, dynamic hint}) => executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) => inner.wire_passing_complex_structs(port_, _api2wire_box_autoadd_tree_node(root)),
+  Future<String> passingComplexStructs(
+          {required TreeNode root, dynamic hint}) =>
+      executeNormal(FlutterRustBridgeTask(
+        callFfi: (port_) => inner.wire_passing_complex_structs(
+            port_, _api2wire_box_autoadd_tree_node(root)),
         parseSuccessData: _wire2api_String,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "passing_complex_structs",
@@ -116,8 +132,10 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<BoxedPoint> returningStructsWithBoxedFields({dynamic hint}) => executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) => inner.wire_returning_structs_with_boxed_fields(port_),
+  Future<BoxedPoint> returningStructsWithBoxedFields({dynamic hint}) =>
+      executeNormal(FlutterRustBridgeTask(
+        callFfi: (port_) =>
+            inner.wire_returning_structs_with_boxed_fields(port_),
         parseSuccessData: _wire2api_boxed_point,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "returning_structs_with_boxed_fields",
@@ -127,9 +145,11 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<int> offTopicMemoryTestInputArray({required Uint8List input, dynamic hint}) =>
+  Future<int> offTopicMemoryTestInputArray(
+          {required Uint8List input, dynamic hint}) =>
       executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) => inner.wire_off_topic_memory_test_input_array(port_, _api2wire_uint_8_list(input)),
+        callFfi: (port_) => inner.wire_off_topic_memory_test_input_array(
+            port_, _api2wire_uint_8_list(input)),
         parseSuccessData: _wire2api_i32,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "off_topic_memory_test_input_array",
@@ -139,9 +159,12 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<Uint8List> offTopicMemoryTestOutputZeroCopyBuffer({required int len, dynamic hint}) =>
+  Future<Uint8List> offTopicMemoryTestOutputZeroCopyBuffer(
+          {required int len, dynamic hint}) =>
       executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) => inner.wire_off_topic_memory_test_output_zero_copy_buffer(port_, _api2wire_i32(len)),
+        callFfi: (port_) =>
+            inner.wire_off_topic_memory_test_output_zero_copy_buffer(
+                port_, _api2wire_i32(len)),
         parseSuccessData: _wire2api_ZeroCopyBuffer_Uint8List,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "off_topic_memory_test_output_zero_copy_buffer",
@@ -151,9 +174,11 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<Uint8List> offTopicMemoryTestOutputVecU8({required int len, dynamic hint}) =>
+  Future<Uint8List> offTopicMemoryTestOutputVecU8(
+          {required int len, dynamic hint}) =>
       executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) => inner.wire_off_topic_memory_test_output_vec_u8(port_, _api2wire_i32(len)),
+        callFfi: (port_) => inner.wire_off_topic_memory_test_output_vec_u8(
+            port_, _api2wire_i32(len)),
         parseSuccessData: _wire2api_uint_8_list,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "off_topic_memory_test_output_vec_u8",
@@ -163,9 +188,12 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<int> offTopicMemoryTestInputVecOfObject({required List<Size> input, dynamic hint}) =>
+  Future<int> offTopicMemoryTestInputVecOfObject(
+          {required List<Size> input, dynamic hint}) =>
       executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) => inner.wire_off_topic_memory_test_input_vec_of_object(port_, _api2wire_list_size(input)),
+        callFfi: (port_) =>
+            inner.wire_off_topic_memory_test_input_vec_of_object(
+                port_, _api2wire_list_size(input)),
         parseSuccessData: _wire2api_i32,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "off_topic_memory_test_input_vec_of_object",
@@ -175,9 +203,12 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<List<Size>> offTopicMemoryTestOutputVecOfObject({required int len, dynamic hint}) =>
+  Future<List<Size>> offTopicMemoryTestOutputVecOfObject(
+          {required int len, dynamic hint}) =>
       executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) => inner.wire_off_topic_memory_test_output_vec_of_object(port_, _api2wire_i32(len)),
+        callFfi: (port_) =>
+            inner.wire_off_topic_memory_test_output_vec_of_object(
+                port_, _api2wire_i32(len)),
         parseSuccessData: _wire2api_list_size,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "off_topic_memory_test_output_vec_of_object",
@@ -187,10 +218,12 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<int> offTopicMemoryTestInputComplexStruct({required TreeNode input, dynamic hint}) =>
+  Future<int> offTopicMemoryTestInputComplexStruct(
+          {required TreeNode input, dynamic hint}) =>
       executeNormal(FlutterRustBridgeTask(
         callFfi: (port_) =>
-            inner.wire_off_topic_memory_test_input_complex_struct(port_, _api2wire_box_autoadd_tree_node(input)),
+            inner.wire_off_topic_memory_test_input_complex_struct(
+                port_, _api2wire_box_autoadd_tree_node(input)),
         parseSuccessData: _wire2api_i32,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "off_topic_memory_test_input_complex_struct",
@@ -200,9 +233,12 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<TreeNode> offTopicMemoryTestOutputComplexStruct({required int len, dynamic hint}) =>
+  Future<TreeNode> offTopicMemoryTestOutputComplexStruct(
+          {required int len, dynamic hint}) =>
       executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) => inner.wire_off_topic_memory_test_output_complex_struct(port_, _api2wire_i32(len)),
+        callFfi: (port_) =>
+            inner.wire_off_topic_memory_test_output_complex_struct(
+                port_, _api2wire_i32(len)),
         parseSuccessData: _wire2api_tree_node,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "off_topic_memory_test_output_complex_struct",
@@ -212,8 +248,10 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<int> offTopicDeliberatelyReturnError({dynamic hint}) => executeNormal(FlutterRustBridgeTask(
-        callFfi: (port_) => inner.wire_off_topic_deliberately_return_error(port_),
+  Future<int> offTopicDeliberatelyReturnError({dynamic hint}) =>
+      executeNormal(FlutterRustBridgeTask(
+        callFfi: (port_) =>
+            inner.wire_off_topic_deliberately_return_error(port_),
         parseSuccessData: _wire2api_i32,
         constMeta: const FlutterRustBridgeTaskConstMeta(
           debugName: "off_topic_deliberately_return_error",
@@ -223,7 +261,8 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
         hint: hint,
       ));
 
-  Future<int> offTopicDeliberatelyPanic({dynamic hint}) => executeNormal(FlutterRustBridgeTask(
+  Future<int> offTopicDeliberatelyPanic({dynamic hint}) =>
+      executeNormal(FlutterRustBridgeTask(
         callFfi: (port_) => inner.wire_off_topic_deliberately_panic(port_),
         parseSuccessData: _wire2api_i32,
         constMeta: const FlutterRustBridgeTaskConstMeta(
@@ -273,7 +312,8 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
     return ans;
   }
 
-  ffi.Pointer<wire_list_tree_node> _api2wire_list_tree_node(List<TreeNode> raw) {
+  ffi.Pointer<wire_list_tree_node> _api2wire_list_tree_node(
+      List<TreeNode> raw) {
     final ans = inner.new_list_tree_node(raw.length);
     for (var i = 0; i < raw.length; ++i) {
       _api_fill_to_wire_tree_node(raw[i], ans.ref.ptr[i]);
@@ -293,15 +333,18 @@ class FlutterRustBridgeExampleImpl extends FlutterRustBridgeBase<FlutterRustBrid
 
   // Section: api_fill_to_wire
 
-  void _api_fill_to_wire_box_autoadd_point(Point apiObj, ffi.Pointer<wire_Point> wireObj) {
+  void _api_fill_to_wire_box_autoadd_point(
+      Point apiObj, ffi.Pointer<wire_Point> wireObj) {
     _api_fill_to_wire_point(apiObj, wireObj.ref);
   }
 
-  void _api_fill_to_wire_box_autoadd_size(Size apiObj, ffi.Pointer<wire_Size> wireObj) {
+  void _api_fill_to_wire_box_autoadd_size(
+      Size apiObj, ffi.Pointer<wire_Size> wireObj) {
     _api_fill_to_wire_size(apiObj, wireObj.ref);
   }
 
-  void _api_fill_to_wire_box_autoadd_tree_node(TreeNode apiObj, ffi.Pointer<wire_TreeNode> wireObj) {
+  void _api_fill_to_wire_box_autoadd_tree_node(
+      TreeNode apiObj, ffi.Pointer<wire_TreeNode> wireObj) {
     _api_fill_to_wire_tree_node(apiObj, wireObj.ref);
   }
 
@@ -336,7 +379,8 @@ Point _wire2api_box_point(dynamic raw) {
 
 BoxedPoint _wire2api_boxed_point(dynamic raw) {
   final arr = raw as List<dynamic>;
-  if (arr.length != 1) throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
+  if (arr.length != 1)
+    throw Exception('unexpected arr length: expect 1 but see ${arr.length}');
   return BoxedPoint(
     point: _wire2api_box_point(arr[0]),
   );
@@ -360,7 +404,8 @@ List<TreeNode> _wire2api_list_tree_node(dynamic raw) {
 
 Point _wire2api_point(dynamic raw) {
   final arr = raw as List<dynamic>;
-  if (arr.length != 2) throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+  if (arr.length != 2)
+    throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
   return Point(
     x: _wire2api_f64(arr[0]),
     y: _wire2api_f64(arr[1]),
@@ -369,7 +414,8 @@ Point _wire2api_point(dynamic raw) {
 
 Size _wire2api_size(dynamic raw) {
   final arr = raw as List<dynamic>;
-  if (arr.length != 2) throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+  if (arr.length != 2)
+    throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
   return Size(
     width: _wire2api_i32(arr[0]),
     height: _wire2api_i32(arr[1]),
@@ -378,7 +424,8 @@ Size _wire2api_size(dynamic raw) {
 
 TreeNode _wire2api_tree_node(dynamic raw) {
   final arr = raw as List<dynamic>;
-  if (arr.length != 2) throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
+  if (arr.length != 2)
+    throw Exception('unexpected arr length: expect 2 but see ${arr.length}');
   return TreeNode(
     name: _wire2api_String(arr[0]),
     children: _wire2api_list_tree_node(arr[1]),
@@ -402,13 +449,17 @@ Uint8List _wire2api_uint_8_list(dynamic raw) {
 /// generated by flutter_rust_bridge
 class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   /// Holds the symbol lookup function.
-  final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) _lookup;
+  final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
+      _lookup;
 
   /// The symbols are looked up in [dynamicLibrary].
-  FlutterRustBridgeExampleWire(ffi.DynamicLibrary dynamicLibrary) : _lookup = dynamicLibrary.lookup;
+  FlutterRustBridgeExampleWire(ffi.DynamicLibrary dynamicLibrary)
+      : _lookup = dynamicLibrary.lookup;
 
   /// The symbols are looked up with [lookup].
-  FlutterRustBridgeExampleWire.fromLookup(ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) lookup)
+  FlutterRustBridgeExampleWire.fromLookup(
+      ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
+          lookup)
       : _lookup = lookup;
 
   void wire_draw_mandelbrot(
@@ -429,10 +480,15 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
 
   late final _wire_draw_mandelbrotPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Void Function(ffi.Int64, ffi.Pointer<wire_Size>, ffi.Pointer<wire_Point>, ffi.Double,
+          ffi.Void Function(
+              ffi.Int64,
+              ffi.Pointer<wire_Size>,
+              ffi.Pointer<wire_Point>,
+              ffi.Double,
               ffi.Int32)>>('wire_draw_mandelbrot');
-  late final _wire_draw_mandelbrot = _wire_draw_mandelbrotPtr
-      .asFunction<void Function(int, ffi.Pointer<wire_Size>, ffi.Pointer<wire_Point>, double, int)>();
+  late final _wire_draw_mandelbrot = _wire_draw_mandelbrotPtr.asFunction<
+      void Function(
+          int, ffi.Pointer<wire_Size>, ffi.Pointer<wire_Point>, double, int)>();
 
   void wire_passing_complex_structs(
     int port_,
@@ -444,11 +500,12 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _wire_passing_complex_structsPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Pointer<wire_TreeNode>)>>(
-          'wire_passing_complex_structs');
-  late final _wire_passing_complex_structs =
-      _wire_passing_complex_structsPtr.asFunction<void Function(int, ffi.Pointer<wire_TreeNode>)>();
+  late final _wire_passing_complex_structsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Int64,
+              ffi.Pointer<wire_TreeNode>)>>('wire_passing_complex_structs');
+  late final _wire_passing_complex_structs = _wire_passing_complex_structsPtr
+      .asFunction<void Function(int, ffi.Pointer<wire_TreeNode>)>();
 
   void wire_returning_structs_with_boxed_fields(
     int port_,
@@ -459,9 +516,11 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   }
 
   late final _wire_returning_structs_with_boxed_fieldsPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('wire_returning_structs_with_boxed_fields');
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'wire_returning_structs_with_boxed_fields');
   late final _wire_returning_structs_with_boxed_fields =
-      _wire_returning_structs_with_boxed_fieldsPtr.asFunction<void Function(int)>();
+      _wire_returning_structs_with_boxed_fieldsPtr
+          .asFunction<void Function(int)>();
 
   void wire_off_topic_memory_test_input_array(
     int port_,
@@ -473,11 +532,13 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _wire_off_topic_memory_test_input_arrayPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Pointer<wire_uint_8_list>)>>(
-          'wire_off_topic_memory_test_input_array');
+  late final _wire_off_topic_memory_test_input_arrayPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Int64, ffi.Pointer<wire_uint_8_list>)>>(
+      'wire_off_topic_memory_test_input_array');
   late final _wire_off_topic_memory_test_input_array =
-      _wire_off_topic_memory_test_input_arrayPtr.asFunction<void Function(int, ffi.Pointer<wire_uint_8_list>)>();
+      _wire_off_topic_memory_test_input_arrayPtr
+          .asFunction<void Function(int, ffi.Pointer<wire_uint_8_list>)>();
 
   void wire_off_topic_memory_test_output_zero_copy_buffer(
     int port_,
@@ -493,7 +554,8 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
           'wire_off_topic_memory_test_output_zero_copy_buffer');
   late final _wire_off_topic_memory_test_output_zero_copy_buffer =
-      _wire_off_topic_memory_test_output_zero_copy_bufferPtr.asFunction<void Function(int, int)>();
+      _wire_off_topic_memory_test_output_zero_copy_bufferPtr
+          .asFunction<void Function(int, int)>();
 
   void wire_off_topic_memory_test_output_vec_u8(
     int port_,
@@ -506,9 +568,11 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   }
 
   late final _wire_off_topic_memory_test_output_vec_u8Ptr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>('wire_off_topic_memory_test_output_vec_u8');
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
+          'wire_off_topic_memory_test_output_vec_u8');
   late final _wire_off_topic_memory_test_output_vec_u8 =
-      _wire_off_topic_memory_test_output_vec_u8Ptr.asFunction<void Function(int, int)>();
+      _wire_off_topic_memory_test_output_vec_u8Ptr
+          .asFunction<void Function(int, int)>();
 
   void wire_off_topic_memory_test_input_vec_of_object(
     int port_,
@@ -520,11 +584,13 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _wire_off_topic_memory_test_input_vec_of_objectPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Pointer<wire_list_size>)>>(
-          'wire_off_topic_memory_test_input_vec_of_object');
+  late final _wire_off_topic_memory_test_input_vec_of_objectPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Int64, ffi.Pointer<wire_list_size>)>>(
+      'wire_off_topic_memory_test_input_vec_of_object');
   late final _wire_off_topic_memory_test_input_vec_of_object =
-      _wire_off_topic_memory_test_input_vec_of_objectPtr.asFunction<void Function(int, ffi.Pointer<wire_list_size>)>();
+      _wire_off_topic_memory_test_input_vec_of_objectPtr
+          .asFunction<void Function(int, ffi.Pointer<wire_list_size>)>();
 
   void wire_off_topic_memory_test_output_vec_of_object(
     int port_,
@@ -540,7 +606,8 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
           'wire_off_topic_memory_test_output_vec_of_object');
   late final _wire_off_topic_memory_test_output_vec_of_object =
-      _wire_off_topic_memory_test_output_vec_of_objectPtr.asFunction<void Function(int, int)>();
+      _wire_off_topic_memory_test_output_vec_of_objectPtr
+          .asFunction<void Function(int, int)>();
 
   void wire_off_topic_memory_test_input_complex_struct(
     int port_,
@@ -552,11 +619,13 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _wire_off_topic_memory_test_input_complex_structPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Pointer<wire_TreeNode>)>>(
-          'wire_off_topic_memory_test_input_complex_struct');
+  late final _wire_off_topic_memory_test_input_complex_structPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Int64, ffi.Pointer<wire_TreeNode>)>>(
+      'wire_off_topic_memory_test_input_complex_struct');
   late final _wire_off_topic_memory_test_input_complex_struct =
-      _wire_off_topic_memory_test_input_complex_structPtr.asFunction<void Function(int, ffi.Pointer<wire_TreeNode>)>();
+      _wire_off_topic_memory_test_input_complex_structPtr
+          .asFunction<void Function(int, ffi.Pointer<wire_TreeNode>)>();
 
   void wire_off_topic_memory_test_output_complex_struct(
     int port_,
@@ -572,7 +641,8 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
       _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64, ffi.Int32)>>(
           'wire_off_topic_memory_test_output_complex_struct');
   late final _wire_off_topic_memory_test_output_complex_struct =
-      _wire_off_topic_memory_test_output_complex_structPtr.asFunction<void Function(int, int)>();
+      _wire_off_topic_memory_test_output_complex_structPtr
+          .asFunction<void Function(int, int)>();
 
   void wire_off_topic_deliberately_return_error(
     int port_,
@@ -583,9 +653,11 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   }
 
   late final _wire_off_topic_deliberately_return_errorPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('wire_off_topic_deliberately_return_error');
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'wire_off_topic_deliberately_return_error');
   late final _wire_off_topic_deliberately_return_error =
-      _wire_off_topic_deliberately_return_errorPtr.asFunction<void Function(int)>();
+      _wire_off_topic_deliberately_return_errorPtr
+          .asFunction<void Function(int)>();
 
   void wire_off_topic_deliberately_panic(
     int port_,
@@ -596,7 +668,8 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   }
 
   late final _wire_off_topic_deliberately_panicPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('wire_off_topic_deliberately_panic');
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>(
+          'wire_off_topic_deliberately_panic');
   late final _wire_off_topic_deliberately_panic =
       _wire_off_topic_deliberately_panicPtr.asFunction<void Function(int)>();
 
@@ -605,25 +678,30 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   }
 
   late final _new_box_autoadd_pointPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<wire_Point> Function()>>('new_box_autoadd_point');
-  late final _new_box_autoadd_point = _new_box_autoadd_pointPtr.asFunction<ffi.Pointer<wire_Point> Function()>();
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_Point> Function()>>(
+          'new_box_autoadd_point');
+  late final _new_box_autoadd_point = _new_box_autoadd_pointPtr
+      .asFunction<ffi.Pointer<wire_Point> Function()>();
 
   ffi.Pointer<wire_Size> new_box_autoadd_size() {
     return _new_box_autoadd_size();
   }
 
   late final _new_box_autoadd_sizePtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<wire_Size> Function()>>('new_box_autoadd_size');
-  late final _new_box_autoadd_size = _new_box_autoadd_sizePtr.asFunction<ffi.Pointer<wire_Size> Function()>();
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_Size> Function()>>(
+          'new_box_autoadd_size');
+  late final _new_box_autoadd_size =
+      _new_box_autoadd_sizePtr.asFunction<ffi.Pointer<wire_Size> Function()>();
 
   ffi.Pointer<wire_TreeNode> new_box_autoadd_tree_node() {
     return _new_box_autoadd_tree_node();
   }
 
   late final _new_box_autoadd_tree_nodePtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<wire_TreeNode> Function()>>('new_box_autoadd_tree_node');
-  late final _new_box_autoadd_tree_node =
-      _new_box_autoadd_tree_nodePtr.asFunction<ffi.Pointer<wire_TreeNode> Function()>();
+      _lookup<ffi.NativeFunction<ffi.Pointer<wire_TreeNode> Function()>>(
+          'new_box_autoadd_tree_node');
+  late final _new_box_autoadd_tree_node = _new_box_autoadd_tree_nodePtr
+      .asFunction<ffi.Pointer<wire_TreeNode> Function()>();
 
   ffi.Pointer<wire_list_size> new_list_size(
     int len,
@@ -633,9 +711,11 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _new_list_sizePtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<wire_list_size> Function(ffi.Int32)>>('new_list_size');
-  late final _new_list_size = _new_list_sizePtr.asFunction<ffi.Pointer<wire_list_size> Function(int)>();
+  late final _new_list_sizePtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<wire_list_size> Function(ffi.Int32)>>(
+      'new_list_size');
+  late final _new_list_size =
+      _new_list_sizePtr.asFunction<ffi.Pointer<wire_list_size> Function(int)>();
 
   ffi.Pointer<wire_list_tree_node> new_list_tree_node(
     int len,
@@ -645,9 +725,12 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _new_list_tree_nodePtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<wire_list_tree_node> Function(ffi.Int32)>>('new_list_tree_node');
-  late final _new_list_tree_node = _new_list_tree_nodePtr.asFunction<ffi.Pointer<wire_list_tree_node> Function(int)>();
+  late final _new_list_tree_nodePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_list_tree_node> Function(
+              ffi.Int32)>>('new_list_tree_node');
+  late final _new_list_tree_node = _new_list_tree_nodePtr
+      .asFunction<ffi.Pointer<wire_list_tree_node> Function(int)>();
 
   ffi.Pointer<wire_uint_8_list> new_uint_8_list(
     int len,
@@ -657,9 +740,12 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
     );
   }
 
-  late final _new_uint_8_listPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<wire_uint_8_list> Function(ffi.Int32)>>('new_uint_8_list');
-  late final _new_uint_8_list = _new_uint_8_listPtr.asFunction<ffi.Pointer<wire_uint_8_list> Function(int)>();
+  late final _new_uint_8_listPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<wire_uint_8_list> Function(
+              ffi.Int32)>>('new_uint_8_list');
+  late final _new_uint_8_list = _new_uint_8_listPtr
+      .asFunction<ffi.Pointer<wire_uint_8_list> Function(int)>();
 
   void free_WireSyncReturnStruct(
     WireSyncReturnStruct val,
@@ -670,9 +756,10 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   }
 
   late final _free_WireSyncReturnStructPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(WireSyncReturnStruct)>>('free_WireSyncReturnStruct');
-  late final _free_WireSyncReturnStruct =
-      _free_WireSyncReturnStructPtr.asFunction<void Function(WireSyncReturnStruct)>();
+      _lookup<ffi.NativeFunction<ffi.Void Function(WireSyncReturnStruct)>>(
+          'free_WireSyncReturnStruct');
+  late final _free_WireSyncReturnStruct = _free_WireSyncReturnStructPtr
+      .asFunction<void Function(WireSyncReturnStruct)>();
 
   void store_dart_post_cobject(
     DartPostCObjectFnType ptr,
@@ -683,8 +770,10 @@ class FlutterRustBridgeExampleWire implements FlutterRustBridgeWireBase {
   }
 
   late final _store_dart_post_cobjectPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(DartPostCObjectFnType)>>('store_dart_post_cobject');
-  late final _store_dart_post_cobject = _store_dart_post_cobjectPtr.asFunction<void Function(DartPostCObjectFnType)>();
+      _lookup<ffi.NativeFunction<ffi.Void Function(DartPostCObjectFnType)>>(
+          'store_dart_post_cobject');
+  late final _store_dart_post_cobject = _store_dart_post_cobjectPtr
+      .asFunction<void Function(DartPostCObjectFnType)>();
 }
 
 class wire_Size extends ffi.Struct {
@@ -730,5 +819,6 @@ class wire_list_size extends ffi.Struct {
   external int len;
 }
 
-typedef DartPostCObjectFnType = ffi.Pointer<ffi.NativeFunction<ffi.Uint8 Function(DartPort, ffi.Pointer<ffi.Void>)>>;
+typedef DartPostCObjectFnType = ffi.Pointer<
+    ffi.NativeFunction<ffi.Uint8 Function(DartPort, ffi.Pointer<ffi.Void>)>>;
 typedef DartPort = ffi.Int64;

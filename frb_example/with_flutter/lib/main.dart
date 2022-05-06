@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _callExampleFfiOne() async {
     final receivedImage = await api.drawMandelbrot(
-        imageSize: Size(width: 50, height: 50), zoomPoint: examplePoint, scale: generateScale(), numThreads: 4);
+        imageSize: Size(width: 50, height: 50), zoomPoint: examplePoint, scale: generateScale(), numThreads: 8);
     if (mounted) setState(() => exampleImage = receivedImage);
   }
 

@@ -117,10 +117,10 @@ class _AnimatedReplaceableImageState extends State<AnimatedReplaceableImage> {
 double _scale = 1.0;
 
 double generateScale() {
-  _scale *= 0.5;
+  _scale *= 0.8;
   if (_scale < 1e-9) _scale = 1.0;
   return _scale;
 }
 
 void runPeriodically(void Function() callback) =>
-    Timer.periodic(const Duration(milliseconds: 500), (timer) => callback());
+    Timer.periodic(const Duration(milliseconds: 100), (timer) => callback());
